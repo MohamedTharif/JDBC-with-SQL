@@ -1,0 +1,44 @@
+package sql;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DML {
+	static final String DB_URL = "jdbc:mysql://localhost/";
+	   static final String USER = "root";
+	   static final String PASS = "Tharif786";
+
+
+	public static void main(String[] args) {
+		  try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+		             Statement stmt = conn.createStatement()) {
+					  
+			        // using the Library databse
+				    String useDB="USE Library";
+				    stmt.executeUpdate(useDB);
+				    
+		            // Insert values into Books table
+		            String insertBooksSQL = "INSERT INTO Books (Title, Author, ISBN, PublishedYear, Copies) " +
+		                                     "VALUES ('The Great Gatsby', 'F. Scott Fitzgerald', '9780743273565', 1925, 5), " +
+		                                     "('1984', 'George Orwell', '9780451524935', 1949, 10), " +
+		                                     "('To Kill a Mockingbird', 'Harper Lee', '9780060935467', 1960, 7)";
+		            stmt.executeUpdate(insertBooksSQL);
+		            System.out.println("Inserted records into Books table.");
+
+		            // Insert values into Members table
+		            String insertMembersSQL = "INSERT INTO Members (Name, Email, PhoneNumber, MembershipDate) " +
+		                                       "VALUES ('Alice Johnson', 'alice@example.com', '1234567890', '2024-01-15'), " +
+		                                       "('Bob Smith', 'bob@example.com', '0987654321', '2024-02-01'), " +
+		                                       "('Carol Davis', 'carol@example.com', '1122334455', '2024-03-10')";
+		            stmt.executeUpdate(insertMembersSQL);
+		            System.out.println("Inserted records into Members table.");
+
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+
+	}
+
+}

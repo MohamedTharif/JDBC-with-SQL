@@ -20,7 +20,7 @@ public class DDL {
 	         String createDB = "CREATE DATABASE Library";
 	         stmt.executeUpdate(createDB);
 	         System.out.println("Database created successfully...");   
-	        
+	         
 	         // using the Library databse
 	         String useDB="USE Library";
 	         stmt.executeUpdate(useDB);
@@ -61,7 +61,7 @@ public class DDL {
 	          while (rsTables.next()) {
 	               System.out.println(rsTables.getString(1));
 	            }
-	       
+	         
 	      } catch (SQLException e) {
 	         e.printStackTrace();
 	      } 
